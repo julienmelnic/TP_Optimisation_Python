@@ -1,0 +1,107 @@
+Exercice 1:
+2)
+Problem:    
+Rows:       3
+Columns:    3
+Non-zeros:  8
+Status:     OPTIMAL
+Objective:  obj = 10.5 (MAXimum)
+
+   No.   Row name   St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 c1           NU             4                           4             2 
+     2 c2           NU             5                           5           0.5 
+     3 c3           B            6.5                           7 
+
+   No. Column name  St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 x1           B            2.5             0               
+     2 x2           B            1.5             0               
+     3 x3           NL             0             0                        -1.5 
+    
+La solution optimale est donc 10.5 avec x1,x2 en base et x3 hors-base. La solution est donc x*=(2.5,1.5,0).
+Il n'y a q'une seule contrainte qui est serrées et c'est la 3ème contrainte.
+
+3)
+
+Si on ajoute 1 à la 2 ème contrainte alors la solution optimale du problème augmente, on passe de 10.5 à 11.De plus oui on pouvait prévoir facilement la nouvelle valeur optimale car x3 est hors base donc on à la 2ème contrainte 2x1<=6, donc x1=3 et on a x1=1 si on remplace x1 dans c1.
+
+Status:     OPTIMAL
+Objective:  obj = 11 (MAXimum)
+
+   No.   Row name   St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 c1           NU             4                           4             2 
+     2 c2           NU             6                           6           0.5 
+     3 c3           B              7                           7 
+
+   No. Column name  St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 x1           B              3             0               
+     2 x2           B              1             0               
+     3 x3           NL             0             0                        -1.5 
+     
+Par contre si on augmente de 1 le terme de droite de la contrainte 1, on n'aurait pas pu le prevoir car on à 2 inconnue dans la contrainte 1.Si on augmente de 1 le terme de droite de la contrainte 1, la valeur optimale est égale à 12.
+Exercice 2:
+1)
+a)
+Maximize 
+	obj: 25 x1 + 20 x2 + 30 x3    /car on déduit les gains des frais d'exploitation/
+Subject To
+	c1: x1 + x2 + x3 <= 60	     /car le laitier dispose de 60 kilo-litres/
+	c2: 65 x1 + 70 x2 + 40 x3 <= 2600   /car le laitier peut investir au max 2600 euros/
+Bounds
+	x1 >= 0    /x1 designe les kilo litres de Fromages/
+	x2 >= 0    /x2 designe les kilo litres de Yaourts/
+	x3 >= 0    /x3 designe les kilo litres de Lait cru/
+End
+b) 
+la solution est x*=(x1=0;x2=0;x3=60) et ca nous donne bien 1800;
+
+Status:     OPTIMAL
+Objective:  obj = 1800 (MAXimum)
+
+   No.   Row name   St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 c1           NU            60                          60            30 
+     2 c2           B           2400                        2600 
+
+   No. Column name  St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 x1           NL             0             0                          -5 
+     2 x2           NL             0             0                         -10 
+     3 x3           B             60             0            
+     
+2)
+Non ce n'est pas rentable car si on ajoute une contrainte c3 tel que x1 + x2 >= 10, alors la valeur optimale devient 1712.5. Elle à donc baisser.
+
+3)
+ A partir de 30 euros de benefice par kl de Fromage l'exploitant à interêt de produire du fromage.
+ 
+4)
+Non ca ne sera pas rentable car même si on augmente la quantité d'argent dont le laitier dispose le nombre de kl de lait ne change pas.
+5)
+A partir de 30 euros/kl de lait car 
+Maximize 
+	obj: 25 x1 + 20 x2 + 30 x3 + 30 x4
+Subject To
+	c1: x1 + x2 + x3 <= 30
+	c2: 65 x1 + 70 x2 + 40 x3 <= 2600
+	c3: x1 + x2 + x3 + x4 <= 60
+6)
+Maximize 
+	obj: 25 x1 + 20 x2 + 30 x3 + 20 x4
+Subject To
+	c1: x1 + x2 + x3 <= 50
+	c2: 65 x1 + 70 x2 + 40 x3 <= 1000
+	c3: x1 + x2 + x3 + x4 <= 60
+	
+	Bounds
+	x1 >= 0
+	x2 >= 0
+	x3 >= 0
+	x4 >= 0
+End
+En utilisant GLPK,si le laitier accepte la proposition du voisin et qu'il veut mettre en oeuvre un projet demandant un investissement de 1600 euros,  on à comme valeur optimale 1450. Il faut donc que son investissement lui offre un benefice de 350 €. 
+	
+
